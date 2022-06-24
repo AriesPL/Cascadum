@@ -12,31 +12,29 @@ namespace Cascadum
 		{
 			
 			var row = new Row();
+			var col = new Column();
 
-			string fileLocation = "C:\\Users\\bengo\\source\\repos\\Cascadum\\Cascadum\\Images\\(1).jpg";
+			string fileLocation = "C:\\Users\\Алексей\\source\\repos\\AriesPL\\Cascadum\\Cascadum\\Images\\1.jpg";
+			
 
-			//DirectoryInfo folder = new DirectoryInfo(fileLocation);
 
-			//if (folder.Exists)
-			//{
-			//	foreach (FileInfo fileInfo in folder.GetFiles())
-			//	{
-			//		picture.Add(Image.FromFile(fileInfo.FullName));
-			//		picture.Add(Image.FromFile(fileInfo.FullName));
-			//		picture.Add(Image.FromFile(fileInfo.FullName));
+			TestRow(row, fileLocation);
+			TestColumn(col, fileLocation);
 
-			//	}
-			//}
+		}
 
-			row.Add(new Picture(Image.FromFile(fileLocation)));
-			row.Add(new Picture(Image.FromFile(fileLocation)));
-			row.Add(new Picture(Image.FromFile(fileLocation)));
-			row.Add(new Picture(Image.FromFile(fileLocation)));
+		private static void TestColumn(Column col, string fileLocation)
+		{
+			for (int i = 0; i < 5; i++) { col.Add(new Picture(Image.FromFile(fileLocation))); }
 
-			//picture.DrawStoryboard(600);
+			col.GetBitmapWithWidth(600).Save("Col.jpg", ImageFormat.Jpeg);
+		}
 
-			row.GetBitmapWithWidth(600).Save("result2.jpg",ImageFormat.Jpeg);
-
+		private static void TestRow(Row row, string fileLocation)
+		{
+			for(int i = 0; i < 5; i++) { row.Add(new Picture(Image.FromFile(fileLocation))); }
+			
+			row.GetBitmapWithWidth(600).Save("Row.jpg", ImageFormat.Jpeg);
 		}
 	}
 }
