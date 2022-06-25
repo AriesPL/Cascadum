@@ -22,7 +22,21 @@ namespace Cascadum
 
 		public override Bitmap GetBitmapWithHeight(int height)
 		{
-			throw new System.NotImplementedException();
+			var overallWidth = (int)(height * GetRatio());
+
+			var bitmap = new Bitmap(overallWidth, height);
+			using (var g = Graphics.FromImage(bitmap))
+			{
+				var localWidth = 0;
+				foreach (var image in _images)
+				{
+					var resizedImage = image.GetBitmapWithHeight(height);
+					g.DrawImage(resizedImage, localWidth, 0);
+					localWidth += resizedImage.Width;
+				}
+			}
+
+			return bitmap;
 		}
 
 		//метод переопределения ширины

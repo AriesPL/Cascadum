@@ -4,7 +4,7 @@ namespace Cascadum
 {
 	public interface IPicture
 	{
-		//Отношение высоты к ширине w/h 
+		//Отношение высоты к ширине w(4)/h(2) 
 		float GetRatio();
 
 

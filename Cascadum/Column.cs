@@ -10,6 +10,7 @@ namespace Cascadum
 	//создаем колекцию картинок
 		private List<IPicture> _images = new List<IPicture>();
 
+	//Коэффицент
 	public override float GetRatio()
 	{
 		return 1 / _images.Sum(x => 1 /  x.GetRatio());
@@ -20,10 +21,23 @@ namespace Cascadum
 	{
 		_images.Add(image);
 	}
-
-	public override Bitmap GetBitmapWithHeight(int height)
+		//метод переопределения высоты
+		public override Bitmap GetBitmapWithHeight(int height)
 	{
-			throw new System.NotImplementedException();
+			var overallWidth = (int)(height * GetRatio());
+			var bitmap = new Bitmap(overallWidth, height);
+			using (var g = Graphics.FromImage(bitmap))
+			{
+				var localHeight = 0;
+				foreach (var image in _images)
+				{
+					var resizedImage = image.GetBitmapWithWidth(overallWidth);
+					g.DrawImage(resizedImage, 0, localHeight);
+					localHeight += resizedImage.Height;
+				}
+			}
+
+			return bitmap;
 
 		}
 
