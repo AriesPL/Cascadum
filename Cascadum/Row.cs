@@ -6,15 +6,20 @@ namespace Cascadum
 {
 	public class Row : PictureBase, IStackable
 	{
-		//создаем колекцию картинок
+		/// <summary>
+		/// колекцию картинок
+		/// </summary>
 		private List<IPicture> _images = new List<IPicture>();
 
 		public override float GetRatio()
 		{
-			return _images.Sum(x => x.GetRatio());
+			return _images.Sum(image => image.GetRatio());
 		}
 
-		//Добавляем в колекцию
+		/// <summary>
+		/// Добавляем в колекцию
+		/// </summary>
+		/// <param name="image"></param>
 		public void Add(IPicture image)
 		{
 			_images.Add(image);

@@ -1,5 +1,4 @@
-﻿
-namespace Cascadum
+﻿namespace Cascadum
 {
 	public interface IStackable : IPicture
 	{

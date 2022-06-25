@@ -13,7 +13,7 @@ namespace Cascadum
 	//Коэффицент
 	public override float GetRatio()
 	{
-		return 1 / _images.Sum(x => 1 /  x.GetRatio());
+		return 1 / _images.Sum(image => 1 / image.GetRatio());
 	}
 
 	//Добавляем в колекцию
